@@ -3,7 +3,7 @@
  * Bitcoin cronjob script
  * Until bitcoind supports attaching a JSON-RPC callback to an address, we're stuck with this
  *
- * @version 0.9.0
+ * @version @@bitcoin-virtuemart-version@@
  * @package Bitcoin payment processor for VirtueMart
  * @subpackage checkout.bitcoin_cronjob
  * @copyright Copyright (C) 2010 by Mike Gogulski - All rights reversed

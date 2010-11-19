@@ -3,7 +3,7 @@ if (!defined('_VALID_MOS') && !defined('_JEXEC'))
 	die('Shoo!');
 /**
  *
- * @version 0.9.0
+ * @version @@bitcoin-virtuemart-version@@
  * @package Bitcoin payment processor for VirtueMart
  * @subpackage ps_bitcoin
  * @copyright Copyright (C) 2010 by Mike Gogulski - All rights reversed
@@ -103,59 +103,59 @@ class ps_bitcoin {
 				</td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_SCHEME_EXPLAIN ?></td>
 			</tr>
-			
-			<tr class="row1">
+
+			<tr class="row0">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_CERTIFICATE ?></strong></td>
 				<td><input type="text" name="BITCOIN_CERTIFICATE" class="inputbox" value="<?php echo BITCOIN_CERTIFICATE ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_CERTIFICATE_EXPLAIN ?></td>
 			</tr>
-			
-			<tr class="row0">
+
+			<tr class="row1">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_USERNAME ?></strong></td>
 				<td><input type="text" name="BITCOIN_USERNAME" class="inputbox" value="<?php echo BITCOIN_USERNAME ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_USERNAME_EXPLAIN ?></td>
 			</tr>
-			
-			<tr class="row1">
+
+			<tr class="row0">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_PASSWORD ?></strong></td>
 				<td><input type="text" name="BITCOIN_PASSWORD" class="inputbox" value="<?php echo BITCOIN_PASSWORD ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_PASSWORD_EXPLAIN ?>
 				</td>
 			</tr>
-			<tr class="row0">
+			<tr class="row1">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_HOST ?></strong></td>
 				<td><input type="text" name="BITCOIN_HOST" class="inputbox" value="<?php echo BITCOIN_HOST ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_HOST_EXPLAIN ?></td>
 			</tr>
-			
-			<tr class="row1">
+
+			<tr class="row0">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_PORT ?></strong></td>
 				<td><input type="text" name="BITCOIN_PORT" class="inputbox" value="<?php echo BITCOIN_PORT ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_PORT_EXPLAIN ?></td>
 			</tr>
-			
-			<tr class="row0">
+
+			<tr class="row1">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_TIMEOUT ?></strong></td>
 				<td><input type="text" name="BITCOIN_TIMEOUT" class="inputbox" value="<?php echo BITCOIN_TIMEOUT ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_TIMEOUT_EXPLAIN ?>
 				</td>
 			</tr>
-			
-			<tr class="row1">
+
+			<tr class="row0">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_CONFIRMS ?></strong></td>
 				<td><input type="text" name="BITCOIN_CONFIRMS" class="inputbox" value="<?php echo BITCOIN_CONFIRMS ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_CONFIRMS_EXPLAIN ?>
 				</td>
 			</tr>
-			
-			<tr class="row0">
+
+			<tr class="row1">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_CRON_SECRET ?></strong></td>
 				<td><input type="text" name="BITCOIN_CRON_SECRET" class="inputbox" value="<?php echo BITCOIN_CRON_SECRET ?>" /></td>
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_CRON_SECRET_EXPLAIN ?>
 				</td>
 			</tr>
-			
-			<tr class="row1">
+
+			<tr class="row0">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_STATUS_SUCCESS ?></strong></td>
 				<td>
 					<select name="BITCOIN_VERIFIED_STATUS" class="inputbox" >
@@ -183,7 +183,7 @@ class ps_bitcoin {
 				<td><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_STATUS_SUCCESS_EXPLAIN ?>
 				</td>
 			</tr>
-			<tr class="row0">
+			<tr class="row1">
 				<td><strong><?php echo VM_ADMIN_CFG_BITCOIN_STATUS_PENDING ?></strong></td>
 				<td>
 					<select name="BITCOIN_PENDING_STATUS" class="inputbox" >
@@ -201,7 +201,7 @@ class ps_bitcoin {
 				</td>
 				<td><?php echo VM_ADMIN_CFG_BITCOIN_STATUS_PENDING_EXPLAIN ?></td>
 			</tr>
-			<tr class="row1">
+			<tr class="row0">
 				<td><strong><?php echo PHPSHOP_ADMIN_CFG_BITCOIN_STATUS_INVALID ?></strong></td>
 				<td>
 					<select name="BITCOIN_INVALID_STATUS" class="inputbox" >
@@ -282,6 +282,7 @@ class ps_bitcoin {
 
 	/**
 	 * create a jsonrpc_client object to talk to the bitcoin server and return it, or false on failure
+	 * @return boolean|jsonrpc_client
 	 */
 	function get_bitcoin_client() {
 		require_once(CLASSPATH . 'payment/ps_bitcoin.cfg.php');
@@ -305,10 +306,13 @@ class ps_bitcoin {
 		return $client;
 	}
 
-	/**************************************************************************
-	 ** name: process_payment()
-	 ** returns: true on success
-	 ***************************************************************************/
+	/**
+	 * Process the payment
+	 * @param string $order_number
+	 * @param float $order_total
+	 * @param array $d
+	 * @return boolean true if bitcoin
+	 */
 	function process_payment($order_number, $order_total, &$d) {
 		// TODO: handle conversions via to-be-written converter script
 		// it's also available as global $vendor_currency
@@ -331,7 +335,7 @@ class ps_bitcoin {
 		}
 
 		$address = $r->value()->scalarVal();
-		
+
 		// TODO: better address validation
 		// https://www.bitcoin.org/smf/index.php?topic=1026.0 has PHP code, but it depends on the GMP extension
 		if (!$address || empty($address) || strlen($address) < 27 || strlen($address) > 40) {
