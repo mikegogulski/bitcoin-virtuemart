@@ -127,8 +127,11 @@ Authors
 Credits
 -------
 
-* jsonrpc
-* PayCific
+bitcoin-virtuemart incorporates code from:
+
+* [XML-RPC for PHP][XML-RPC-PHP] by Edd Dumbill (for JSON-RPC support)
+* The [PayCific VirtueMart 1.1.x Payment Module][PayCificModule]
+  by [PayCific International AG][PayCific]
 
 License
 -------
@@ -140,3 +143,6 @@ information, see <http://unlicense.org/> or the accompanying UNLICENSE file.
 [Bitcoin]:		http://www.bitcoin.org/
 [VirtueMart]:	http://www.virtuemart.net/
 [Joomla]:		http://www.joomla.org/
+[XML-RPC-PHP]:	http://phpxmlrpc.sourceforge.net/
+[PayCific]:		http://www.paycific.com/
+[PayCificModule]:	[http://extensions.virtuemart.net/index.php?option=com_sobi2&sobi2Task=sobi2Details&catid=2&sobi2Id=438&Itemid=2
