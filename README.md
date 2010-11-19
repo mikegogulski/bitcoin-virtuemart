@@ -1,8 +1,8 @@
 bitcoin-virtuemart
 ==================
 
-A [Bitcoin](Bitcoin) payment processor plugin for the
-[VirtueMart](VirtueMart) shopping cart for [Joomla!](Joomla).
+A [Bitcoin][Bitcoin] payment processor plugin for the
+[VirtueMart][VirtueMart] shopping cart for [Joomla!][Joomla].
 
 Version: @@bitcoin-virtuemart-version@@
 
