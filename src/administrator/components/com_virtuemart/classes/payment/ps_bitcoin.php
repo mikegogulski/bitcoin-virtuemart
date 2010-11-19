@@ -74,7 +74,7 @@ class ps_bitcoin {
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_PORT_EXPLAIN", "Bitcoin server port (generally 8332)");
 
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_TIMEOUT", "Payment timeout (hours)");
-		define("PHPSHOP_ADMIN_CFG_BITCOIN_TIMEOUT_EXPLAIN", "Transactions not paid for within this number of hours will be automatically cancelled. Partial payments will be refunded.");
+		define("PHPSHOP_ADMIN_CFG_BITCOIN_TIMEOUT_EXPLAIN", "Transactions not paid for within this number of hours will be automatically cancelled.");
 
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_CONFIRMS", "Confirmations required");
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_CONFIRMS_EXPLAIN", "Minimum number of Bitcoin transaction network confirmations required before a payment is considered accepted.");
