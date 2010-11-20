@@ -80,7 +80,7 @@ class ps_bitcoin {
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_CONFIRMS_EXPLAIN", "Minimum number of Bitcoin transaction network confirmations required before a payment is considered accepted.");
 
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_CRON_SECRET", "Cron secret");
-		define("PHPSHOP_ADMIN_CFG_BITCOIN_CRON_SECRET_EXPLAIN", "Secret parameter to validate bitcoin_cronjob runs. You shouldn't need to change this. <strong>Don't forget to create a cron job.</strong> Example: <code>0,5,10,15,20,25,30,35,40,45,50,55 * * * * /usr/bin/wget -O /dev/null 'http://[YOUR_SHOP_DOMAIN]/[PATH]/index.php?option=com_virtuemart&page=checkout.bitcoin_cronjob&secret=[YOUR_CRON_SECRET]'</code>");
+		define("PHPSHOP_ADMIN_CFG_BITCOIN_CRON_SECRET_EXPLAIN", "Secret parameter to validate bitcoin_cronjob runs. You shouldn't need to change this. <strong>Don't forget to create a cron job.</strong> Example: <code>*/5 * * * * /usr/bin/wget -O /dev/null 'http://[YOUR_SHOP_DOMAIN]/[PATH]/index.php?option=com_virtuemart&page=checkout.bitcoin_cronjob&secret=[YOUR_CRON_SECRET]'</code>");
 
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_STATUS_SUCCESS", "Order status for successful transactions");
 		define("PHPSHOP_ADMIN_CFG_BITCOIN_STATUS_SUCCESS_EXPLAIN", "Orders will be moved to this status when the Bitcoin payment transaction is completed successfully. If you are selling downloadable goods, select the status which enables the download and notifies the customer via email.");
