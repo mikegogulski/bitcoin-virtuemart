@@ -108,7 +108,7 @@ global $vmLogger;
 $sql = "select #__{vm}_orders.order_id,order_payment_name,order_number,order_total ";
 $sql .= "from #__{vm}_order_payment left join #__{vm}_orders on #__{vm}_orders.order_id = #__{vm}_order_payment.order_id ";
 // TODO: Extract "BC" in some intelligent, safe manner
-$sql .= "where payment_method_id=(select payment_method_id from #__{vm}_payment_method where payment_method_code='BC') and length(order_payment_name)=34 and order_status='" . BITCOIN_PENDING_STATUS . "'";
+$sql .= "where payment_method_id=(select payment_method_id from #__{vm}_payment_method where payment_method_code='BC') and order_status='" . BITCOIN_PENDING_STATUS . "'";
 $db = new ps_DB();
 $db->query($sql);
 if (!$db->next_record())
