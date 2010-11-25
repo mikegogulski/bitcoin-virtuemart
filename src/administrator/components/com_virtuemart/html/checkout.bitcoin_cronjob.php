@@ -1,4 +1,4 @@
-	<?php
+<?php
 /**
  * Bitcoin cronjob script
  * Until bitcoind supports attaching a JSON-RPC callback to an address, we're stuck with this

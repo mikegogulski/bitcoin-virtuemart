@@ -1,6 +1,4 @@
 <?php
-if (!defined('_VALID_MOS') && !defined('_JEXEC'))
-  die('Shoo!');
 /**
  *
  * @version @@bitcoin-virtuemart-version@@
@@ -15,7 +13,8 @@ if (!defined('_VALID_MOS') && !defined('_JEXEC'))
  * by PayCific International AG - http://www.paycific.com/
  *
  */
-
+if (!defined('_VALID_MOS') && !defined('_JEXEC'))
+  die('Shoo!');
 include_once(CLASSPATH . "bitcoin.inc");
 
 /**
@@ -29,7 +28,7 @@ class ps_bitcoin {
 
   /**
    * Show all configuration parameters for this payment method
-   * @returns boolean False when the Payment method has no configration
+   * @return boolean False when the Payment method has no configration
    * @todo Validate form input
    */
   function show_configuration() {
@@ -227,13 +226,16 @@ class ps_bitcoin {
 <?php
   }
 
+  /**
+   * Return true if payment class has a configuration
+   * @return boolean
+   */
   function has_configuration() {
-    // return false if there's no configuration
     return true;
   }
 
   /**
-   * Returns the "is_writeable" status of the configuration file
+   * Return the "is_writeable" status of the configuration file
    * @param void
    * @returns boolean True if the configuration file is writeable, false otherwise
    */
@@ -242,18 +244,18 @@ class ps_bitcoin {
   }
 
   /**
-   * Returns the "is_readable" status of the configuration file
+   * Return the "is_readable" status of the configuration file
    * @param void
-   * @returns boolean True if the configuration file is writeable, false otherwise
+   * @return boolean True if the configuration file is writeable, false otherwise
    */
   function configfile_readable() {
     return is_readable(CLASSPATH . "payment/" . $this->classname . ".cfg.php");
   }
 
   /**
-   * Writes the configuration file for this payment method
+   * Write the configuration file for this payment method
    * @param array Array of configuration parameters
-   * @returns boolean True when configuration file written successfully, false otherwise
+   * @return boolean True when configuration file written successfully, false otherwise
    */
   function write_configuration(&$d) {
     $my_config_array = array();
