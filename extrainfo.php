@@ -1,6 +1,7 @@
 <?php
 include_once(CLASSPATH . "payment/ps_bitcoin.cfg.php");
 require_once(CLASSPATH . "ps_order.php");
+require_once(CLASSPATH . "bitcoin.inc");
 $tot = number_format($db->f("order_total"), 2, ".", "");
 $addr = $_SESSION["bitcoin_address"];
 $oid = $db->f("order_id");
@@ -15,8 +16,8 @@ else
 	$confirminfo .= "s";
 $confirminfo .= " been received.";
 $confirminfo .= " If payment is not received within " . BITCOIN_TIMEOUT . " hours, your order will be canceled automatically.";
-// TODO: better address validation
-if (strlen($addr) >= 27 && strlen($addr) <= 40) {
+
+if (Bitcoin::checkAddress($addr)) {
 	$q = "UPDATE #__vm_order_payment SET order_payment_name='" . $addr . "' WHERE order_id='" . $oid . "'";
 	$db->query($q);
 	echo "<p><strong>" . $addrinfo . "</strong><p>";
